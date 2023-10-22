@@ -1,18 +1,22 @@
 package main
 
 import (
-	"log"
-	"net/http"
+	/* "log"
+	"net/http" */
     "github.com/gofiber/fiber/v2"
 	/* "github.com/rs/cors" */ // Import the "rs/cors" package
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/kavikkannan/go-jwt/pkg/routes"
     "github.com/kavikkannan/go-jwt/pkg/config"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
     config.Connect()
 	app := fiber.New()
+	app.Use(cors.New(cors.Config{
+		AllowCredentials: true,
+	}))
 	routes.Setup(app)
 
 	/* // Create a CORS handler with your desired options.
@@ -23,10 +27,11 @@ func main() {
 	})
 
 	// Use the CORS middleware with your router.
-	handler := c.Handler(app) */
+	handler := c.Handler(app) 
 
 	// Start your server with the CORS middleware.
 	port := ":9000"
 	log.Printf("Server listening on port %s...\n", port)
-	log.Fatal(http.ListenAndServe(port, handler))
+	log.Fatal(http.ListenAndServe("local"))*/
+	app.Listen(":9000")
 }

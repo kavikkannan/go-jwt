@@ -3,10 +3,11 @@ package config
 import(
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/kavikkannan/go-jwt/pkg/models"
 )
 
 var(
-	db* gorm.DB
+	DB* gorm.DB
 )
 
 func Connect(){
@@ -14,9 +15,10 @@ func Connect(){
 	if err != nil{
 		panic(err)
 	}
-	db=d
+	DB=d
+	d.AutoMigrate(&models.User{})
 }
 
 func GetDB() *gorm.DB{
-	return db
+	return DB
 }

@@ -1,14 +1,16 @@
 package routes
 
 import (
-	"github.com/kavikkannan/akg/controllers"
+	
 	"github.com/gofiber/fiber/v2"
+	"github.com/kavikkannan/go-jwt/pkg/controllers"
 )
 
-func Setup(app *fiber.App)  {
-	app.Get("/", controllers.Hello)
-	/* router.HandleFunc("/book/", controllers.GetBook).Methods("GET")
-	router.HandleFunc("/book/{bookid}", controllers.GetBookById).Methods("GET")
-	router.HandleFunc("/book/{bookid}", controllers.UpdateBook).Methods("PUT")
-	router.HandleFunc("/book/{bookid}", controllers.DeleteBook).Methods("DELETE")
- */}
+func Setup(app *fiber.App) {
+
+	app.Post("/api/register", controllers.Register)
+	app.Post("/api/login", controllers.Login)
+	app.Get("/api/user", controllers.User)
+	app.Post("/api/logout", controllers.Logout)
+
+}
