@@ -16,10 +16,16 @@ func main() {
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
 		AllowCredentials: true,
+	 // Add your frontend origin here
+
+
 	}))
 	routes.Setup(app)
 
-	/* // Create a CORS handler with your desired options.
+	
+	app.Listen(":9000")
+}
+/* // Create a CORS handler with your desired options.
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{"http://localhost:3000"}, // Add your frontend origin here
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE"}, // Define allowed HTTP methods
@@ -33,5 +39,3 @@ func main() {
 	port := ":9000"
 	log.Printf("Server listening on port %s...\n", port)
 	log.Fatal(http.ListenAndServe("local"))*/
-	app.Listen(":9000")
-}

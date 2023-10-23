@@ -6,13 +6,14 @@ import (
 	"github.com/kavikkannan/go-jwt/pkg/models"
 	"golang.org/x/crypto/bcrypt"
 	"github.com/dgrijalva/jwt-go"
+	/* "net/http" */
 	"strconv"
 	"time"
 )
 
 const SecretKey = "secret"
 
-func Register(c *fiber.Ctx) error {
+func Register( c *fiber.Ctx) error {
 	var data map[string]string
 
 	if err := c.BodyParser(&data); err != nil {
@@ -28,7 +29,7 @@ func Register(c *fiber.Ctx) error {
 	}
 
 	config.DB.Create(&user)
-
+	
 	return c.JSON(user)
 }
 
