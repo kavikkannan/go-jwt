@@ -22,10 +22,11 @@ func Register( c *fiber.Ctx) error {
 
 	password, _ := bcrypt.GenerateFromPassword([]byte(data["password"]), 14)
 
-	user := models.User{
+	user := models.Login{
 		Name:     data["name"],
 		Email:    data["email"],
 		Password: password,
+		Position: data["position"],
 	}
 
 	config.DB.Create(&user)
@@ -40,7 +41,7 @@ func Login(c *fiber.Ctx) error {
 		return err
 	}
 
-	var user models.User
+	var user models.Login
 
 	config.DB.Where("email = ?", data["email"]).First(&user)
 
@@ -102,7 +103,7 @@ func User(c *fiber.Ctx) error {
 
 	claims := token.Claims.(*jwt.StandardClaims)
 
-	var user models.User
+	var user models.Login
 
 	config.DB.Where("id = ?", claims.Issuer).First(&user)
 

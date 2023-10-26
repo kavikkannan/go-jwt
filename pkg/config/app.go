@@ -11,12 +11,12 @@ var(
 )
 
 func Connect(){
-	d, err:= gorm.Open("mysql","root:Kkannan@mysql1@/ZOOMANIAN?charset=utf8&parseTime=True&loc=Local")
+	d, err:= gorm.Open("mysql","admin:subi1234@tcp(database-1.c5akcsdv8dty.ap-south-1.rds.amazonaws.com:3306)/task?charset=utf8&parseTime=True&loc=Local")
 	if err != nil{
 		panic(err)
 	}
 	DB=d
-	d.AutoMigrate(&models.User{})
+	d.AutoMigrate(&models.Login{})
 }
 
 func GetDB() *gorm.DB{
