@@ -6,6 +6,4 @@ type Login struct {
 	Email    string `json:"email" gorm:"unique"`
 	Position string
 	Password []byte `json:"-"`
-	Phonenumber string `json:"phonenumber"`
-	Address string `json:"address"`
 }
