@@ -26,7 +26,6 @@ func Register( c *fiber.Ctx) error {
 		Name:     data["name"],
 		Email:    data["email"],
 		Password: password,
-		Position: data["position"],
 	}
 
 	config.DB.Create(&user)
