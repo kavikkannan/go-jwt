@@ -16,7 +16,7 @@ func main() {
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
 		AllowCredentials: true,
-		AllowOrigins:"*",
+		AllowOrigins:"https://busticketbooking-topaz.vercel.app",
 
 	}))
 	routes.Setup(app)
