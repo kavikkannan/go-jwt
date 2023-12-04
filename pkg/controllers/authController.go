@@ -73,13 +73,14 @@ func Login(c *fiber.Ctx) error {
     }
 
     cookie := fiber.Cookie{
-        Name:     "jwt",
-        Value:    token,
-        Expires:  time.Now().Add(time.Hour * 24),
-        HTTPOnly: true,
-    }
+		Name:     "jwt",
+		Value:    token,
+		Expires:  time.Now().Add(time.Hour * 24),
+		HTTPOnly: true,
+		SameSite: "None",
+	}
 
-    // Check if the connection is secure (HTTPS)
+
     if c.Protocol() == "https" {
         cookie.Secure = true
     }
